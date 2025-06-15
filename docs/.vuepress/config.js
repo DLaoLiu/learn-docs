@@ -15,8 +15,15 @@ export default defineUserConfig({
   },
 
   lang: "zh-CN",
-  title: "嗨,准备好学习Go语言了吗?",
-  description: "这个项目是go语法入门课程，请跟着我学习。",
+  title: "嗨,这是我的Web3学习笔记",
+  description: "这是我的Web3学习笔记，记录了我在Web3领域的学习和探索。",
+  head: [
+    ["link", { rel: "icon", href: "/images/favicon.ico" }],
+    ["meta", { name: "viewport", content: "width=device-width, initial-scale=1.0" }],
+    ["meta", { name: "theme-color", content: "#3eaf7c" }],
+    ["meta", { name: "apple-mobile-web-app-capable", content: "yes" }],
+    ["meta", { name: "apple-mobile-web-app-status-bar-style", content: "black" }],
+  ],
 
   theme: defaultTheme({
     logo: "/images/favicon.ico",
@@ -30,11 +37,20 @@ export default defineUserConfig({
         text: "开始",
         link: "/get-started",
       },
-      // {
-      //   text: "Go",
-      //   prefix: "/go/",
-      //   children: [{}],
-      // },
+      {
+        text: "面试题",
+        prefix: "/interview-questions",
+        children: [{
+          text: "Web3",
+          prefix: "/interview-questions/web3/",
+          children: [
+            {
+              text: "区块链概念简介",
+              link: "/interview-questions/web3/区块链概念简介",
+            }
+          ],
+        }],
+      },
     ],
   }),
 
