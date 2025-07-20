@@ -16,9 +16,9 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-6OCJQEKQ.js";
+} from "./chunk-DDXJJ377.js";
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/env.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/env.js
 function getDevtoolsGlobalHook() {
   return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
@@ -27,11 +27,11 @@ function getTarget() {
 }
 var isProxyAvailable = typeof Proxy === "function";
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/const.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/const.js
 var HOOK_SETUP = "devtools-plugin:setup";
 var HOOK_PLUGIN_SETTINGS_SET = "plugin:settings:set";
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/time.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/time.js
 var supported;
 var perf;
 function isPerformanceSupported() {
@@ -54,7 +54,7 @@ function now() {
   return isPerformanceSupported() ? perf.now() : Date.now();
 }
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/proxy.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/proxy.js
 var ApiProxy = class {
   constructor(plugin, hook) {
     this.target = null;
@@ -154,7 +154,7 @@ var ApiProxy = class {
   }
 };
 
-// node_modules/.pnpm/@vue+devtools-api@6.6.4/node_modules/@vue/devtools-api/lib/esm/index.js
+// node_modules/vue-router/node_modules/@vue/devtools-api/lib/esm/index.js
 function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
   const descriptor = pluginDescriptor;
   const target = getTarget();
@@ -176,7 +176,7 @@ function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
   }
 }
 
-// node_modules/.pnpm/vue-router@4.5.0_vue@3.5.13/node_modules/vue-router/dist/vue-router.mjs
+// node_modules/vue-router/dist/vue-router.mjs
 var isBrowser = typeof document !== "undefined";
 function isRouteComponent(component) {
   return typeof component === "object" || "displayName" in component || "props" in component || "__vccOpts" in component;
@@ -625,15 +625,15 @@ function createWebHistory(base) {
 }
 function createMemoryHistory(base = "") {
   let listeners = [];
-  let queue = [START];
+  let queue = [[START, {}]];
   let position = 0;
   base = normalizeBase(base);
-  function setLocation(location2) {
+  function setLocation(location2, state = {}) {
     position++;
     if (position !== queue.length) {
       queue.splice(position);
     }
-    queue.push(location2);
+    queue.push([location2, state]);
   }
   function triggerListeners(to, from, { direction, delta }) {
     const info = {
@@ -648,16 +648,16 @@ function createMemoryHistory(base = "") {
   const routerHistory = {
     // rewritten by Object.defineProperty
     location: START,
-    // TODO: should be kept in queue
+    // rewritten by Object.defineProperty
     state: {},
     base,
     createHref: createHref.bind(null, base),
-    replace(to) {
+    replace(to, state) {
       queue.splice(position--, 1);
-      setLocation(to);
+      setLocation(to, state);
     },
-    push(to, data) {
-      setLocation(to);
+    push(to, state) {
+      setLocation(to, state);
     },
     listen(callback) {
       listeners.push(callback);
@@ -669,7 +669,7 @@ function createMemoryHistory(base = "") {
     },
     destroy() {
       listeners = [];
-      queue = [START];
+      queue = [[START, {}]];
       position = 0;
     },
     go(delta, shouldTrigger = true) {
@@ -691,7 +691,11 @@ function createMemoryHistory(base = "") {
   };
   Object.defineProperty(routerHistory, "location", {
     enumerable: true,
-    get: () => queue[position]
+    get: () => queue[position][0]
+  });
+  Object.defineProperty(routerHistory, "state", {
+    enumerable: true,
+    get: () => queue[position][1]
   });
   return routerHistory;
 }
@@ -1758,7 +1762,8 @@ var RouterLinkImpl = defineComponent({
     ariaCurrentValue: {
       type: String,
       default: "page"
-    }
+    },
+    viewTransition: Boolean
   },
   useLink,
   setup(props, { slots }) {
@@ -2923,8 +2928,8 @@ export {
 
 vue-router/dist/vue-router.mjs:
   (*!
-    * vue-router v4.5.0
-    * (c) 2024 Eduardo San Martin Morote
+    * vue-router v4.5.1
+    * (c) 2025 Eduardo San Martin Morote
     * @license MIT
     *)
 */

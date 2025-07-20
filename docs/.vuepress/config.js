@@ -5,14 +5,14 @@ import { viteBundler } from "@vuepress/bundler-vite";
 export default defineUserConfig({
   base: "/",
   hostname: "www.kinglet.com",
-  locales: {
-    "/zh/": {
-      lang: "中文",
-    },
-    "/": {
-      lang: "English",
-    },
-  },
+  // locales: {
+  //   "/zh/": {
+  //     lang: "中文",
+  //   },
+  //   "/": {
+  //     lang: "English",
+  //   },
+  // },
 
   lang: "zh-CN",
   title: "嗨,这是我的Web3学习笔记",
@@ -33,24 +33,64 @@ export default defineUserConfig({
         text: "首页",
         link: "/",
       },
+      // {
+      //   text: "开始",
+      //   link: "/get-started",
+      // },
       {
-        text: "开始",
-        link: "/get-started",
+        text: "Web3",
+        prefix: "/interview-questions/web3/",
+        children: [
+          {
+            text: "区块链概念简介",
+            link: "/interview-questions/web3/区块链概念简介",
+          }
+        ],
       },
       {
-        text: "面试题",
-        prefix: "/interview-questions",
-        children: [{
-          text: "Web3",
-          prefix: "/interview-questions/web3/",
-          children: [
-            {
-              text: "区块链概念简介",
-              link: "/interview-questions/web3/区块链概念简介",
-            }
-          ],
-        }],
+        text: "Java",
+        prefix: "/interview-questions/java/",
+        children: [
+          {
+            text: "大数据场景下性能优化总结",
+            link: "/interview-questions/java/大数据场景下性能优化总结",
+          },
+          {
+            text: "事务相关面试题详解",
+            link: "/interview-questions/java/事务相关面试题详解",
+          },
+        ],
       },
+      // {
+      //   text: "面试题",
+      //   prefix: "/interview-questions",
+      //   children: [
+      //     {
+      //       text: "Web3",
+      //       prefix: "/interview-questions/web3/",
+      //       children: [
+      //         {
+      //           text: "区块链概念简介",
+      //           link: "/interview-questions/web3/区块链概念简介",
+      //         }
+      //       ],
+      //     },
+      //     {
+      //       text: "Java",
+      //       prefix: "/interview-questions/java/",
+      //       children: [
+      //         {
+      //           text: "大数据场景下性能优化总结",
+      //           link: "/interview-questions/java/大数据场景下性能优化总结",
+      //         },
+      //         {
+      //           text: "事务相关面试题详解",
+      //           link: "/interview-questions/java/事务相关面试题详解",
+      //         },
+      //       ],
+      //     }
+      //   ],
+      // },
     ],
   }),
 

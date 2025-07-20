@@ -1,5 +1,5 @@
-import comp from "/Users/laoliu/Desktop/code/laoliu/go-learn-docs/docs/.vuepress/.temp/pages/404.html.vue"
-const data = JSON.parse("{\"path\":\"/404.html\",\"title\":\"\",\"lang\":\"English\",\"frontmatter\":{\"layout\":\"NotFound\"},\"headers\":[],\"git\":{},\"filePathRelative\":null}")
+import comp from "E:/code/vue/learn-docs/docs/.vuepress/.temp/pages/404.html.vue"
+const data = JSON.parse("{\"path\":\"/404.html\",\"title\":\"\",\"lang\":\"zh-CN\",\"frontmatter\":{\"layout\":\"NotFound\"},\"git\":{},\"filePathRelative\":null}")
 export { comp, data }
 
 if (import.meta.webpackHot) {
